@@ -130,12 +130,31 @@ html:focus-within {
       
   }
 
+  li {
+    display: flex;
+    gap: 15px;
+    height: 20px;
+
+  }
+
+  .Todo_li, .Calender_li, 
+  .Reminder_li, .Planning_li {
+    margin: 10px;
+    color: hsl(0, 0%, 41%);
+  }
+
+  .Reminder_li {
+    margin-left: 15px;
+  }
+
     main {
       display: flex;
       flex-direction: column;
     }
     
-    
+    .toggle-content {
+      list-style: none;
+    }
 
     .menu-links a {
       text-decoration: none;
