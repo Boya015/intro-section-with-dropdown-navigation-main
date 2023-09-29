@@ -1,66 +1,47 @@
+
+
 document.addEventListener("DOMContentLoaded", function () {
-  // Toggle function to handle showing/hiding elements
-  function toggleElement(element, isCollapsed) {
-    element.classList.toggle("show");
-    // Add this line to override the display property
-    element.style.display = element.classList.contains("show") ? "block" : "none";
-    return !isCollapsed;
-  }
-
-  // Toggle arrow function to change the arrow icon
-  function toggleArrowIcon(isCollapsed, toggleIcon) {
-    if (isCollapsed) {
-      toggleIcon.innerHTML = `
-        <svg width="10" height="6" xmlns="http://www.w3.org/2000/svg">
-          <path stroke="#686868" stroke-width="1.5" fill="none" d="m1 1 4 4 4-4"/>
-        </svg>
-      `;
-    } else {
-      toggleIcon.innerHTML = `
-        <svg width="10" height="6" xmlns="http://www.w3.org/2000/svg">
-          <path stroke="#686868" stroke-width="1.5" fill="none" d="m1 5 4-4 4 4"/>
-        </svg>
-      `;
+    const emailInput = document.getElementById("email");
+    const errorMessage = document.getElementById("error-message");
+    const errorIcon = document.getElementById("error-icon");
+    const submitBtn = document.getElementById("submit-btn");
+  
+    // Function to validate email format
+    function isValidEmail(email) {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return emailRegex.test(email);
     }
-  }
-
-  // Get references to the menu elements
-  const menuToggle = document.getElementById("menu-toggle");
-  const menuLinks = document.querySelector(".menu-links");
-  const closingMenuIcon = menuToggle.querySelector(".Closing_Menu");
-
-  let isClosingMenuVisible = false;
-
-  // Add a click event listener to the menu-toggle button
-  menuToggle.addEventListener("click", () => {
-    isClosingMenuVisible = toggleElement(menuLinks, isClosingMenuVisible);
-    closingMenuIcon.style.display = isClosingMenuVisible ? "block" : "none";
+  
+    // Function to handle form submission
+    function handleSubmit(event) {
+      event.preventDefault();
+      const email = emailInput.value;
+      if (!isValidEmail(email)) {
+        errorMessage.textContent = "Please provide a valid email.";
+        errorMessage.style.display = "block"; // Show the error message
+        emailInput.classList.add("input-error"); // Add the CSS class for red border
+        emailInput.classList.add("error");
+        errorIcon.style.display = "inline";
+      } else {
+        errorMessage.style.display = "none"; // Hide the error message
+        emailInput.classList.remove("error");
+        errorIcon.style.display = "none";
+        // Perform form submission or other actions here
+      }
+    }
+  
+    // Add event listener for form submission
+    const form = document.querySelector(".input-form");
+    form.addEventListener("submit", handleSubmit);
+  
+    // Add event listener for button click
+    submitBtn.addEventListener("click", function () {
+      if (!isValidEmail(emailInput.value)) {
+        errorMessage.style.display = "block"; // Show the error message
+        emailInput.classList.add("input-error");
+        errorIcon.style.display = "inline";
+      }
+    });
   });
-
-  // Get references to the toggle section elements (existing)
-  const toggleSection = document.querySelector('.toggle-section');
-  const toggleArrow = toggleSection.querySelector('.toggle-arrow');
-  const toggleIcon = toggleArrow ? toggleArrow.querySelector('.toggle-icon') : null;
-  const toggleContent = toggleSection.querySelector('.toggle-content');
-
-  let isCollapsed = true;
-
-  // Add a click event listener to the toggle-arrow (existing)
-  toggleArrow.addEventListener('click', () => {
-    isCollapsed = toggleElement(toggleContent, isCollapsed);
-    toggleArrowIcon(isCollapsed, toggleIcon);
-  });
-
-  // Get references to the toggle section elements for toggle-section_2 (new)
-  const toggleSection2 = document.querySelector('.toggle-section_2');
-  const toggleArrow2 = toggleSection2.querySelector('.toggle-icon'); // Use .toggle-icon directly since it's an SVG
-  const toggleContent2 = toggleSection2.querySelector('.toggle-content_2');
-
-  let isCollapsed2 = true;
-
-  // Add a click event listener to the toggle-icon for toggle-section_2 (new)
-  toggleArrow2.addEventListener('click', () => {
-    isCollapsed2 = toggleElement(toggleContent2, isCollapsed2);
-    toggleArrowIcon(isCollapsed2, toggleArrow2);
-  });
-});
+  
+  
