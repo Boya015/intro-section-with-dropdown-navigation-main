@@ -24,6 +24,10 @@ html:focus-within {
     display: block;
   }
 
+  a {
+    text-decoration: none;
+  }
+
   ul[role="list"],
   ol[role="list"] {
   list-style: none;
@@ -68,7 +72,9 @@ html:focus-within {
     display: flex;
 }
 
-
+.menu-links:hover {
+ color:  hsl(0, 0%, 8%);
+}
 
 .login-register {
     text-align: center;
@@ -149,6 +155,11 @@ html:focus-within {
 
   .Reminder_li {
     margin-left: -9px;
+  }
+  
+  .Todo_svg, .Calender_svg, 
+  .Reminder_svg, .Planning_svg {
+    height: 20px;
   }
 
   .History_li, .Team_li, 
@@ -295,11 +306,43 @@ html:focus-within {
 
   .toggle-content {
     display: none;
+    left: 114px;
+    padding: 20px;
+    
   }
 
   .toggle-content_2 {
     display: none;
+    margin-left: 20px;
+    width: 75px;
+    padding: 15px;
+    line-height: 25px;
   }
+
+  .Todo_li, .Calender_li, 
+  .Reminder_li, .Planning_li {
+    display: flex;
+    gap: 5px;
+    line-height: 25px;
+  }
+
+  .Todo_svg, .Calender_svg, 
+  .Reminder_svg, .Planning_svg {
+    height: 20px;
+  }
+
+  .toggle-content,
+  .toggle-content_2 {
+  display: none;
+  position: absolute;
+  background-color: white;
+  list-style: none;
+  color: hsl(0, 0%, 41%);
+  border-radius: 8px;
+  box-shadow: 0 1rem 3rem -0.5rem hsl(0, 0%, 41%);
+  /* Add background color or other styling as needed */
+  /* Add other styling properties */
+}
 
   .menu-links.menu-active {
     display: flex;
@@ -368,6 +411,14 @@ html:focus-within {
      grid-area: Content;
      margin-top: 5rem;
    }
+
+   .toggle-content,
+  .toggle-content_2 {
+  display: none;
+  position: absolute;
+  background-color: white; /* Add background color or other styling as needed */
+  /* Add other styling properties */
+}
  
    h1 {
     font-size: 3em;
@@ -408,6 +459,11 @@ html:focus-within {
  
    .toggle-content_2 {
      display: none;
+   }
+
+   .Todo_svg, .Calender_svg, 
+   .Reminder_svg, .Planning_svg {
+     height: 20px;
    }
  
    .menu-links.menu-active {
